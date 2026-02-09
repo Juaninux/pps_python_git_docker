@@ -7,3 +7,5 @@ Práctica ideada para practicar:
 - Docker
 - Python (venv)
 - Git y Github.
+
+Contributors: Juan Carrasco Milla y Víctor Manuel Andreu.
