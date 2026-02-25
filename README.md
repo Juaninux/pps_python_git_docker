@@ -56,3 +56,23 @@ curl http://localhost:5000/
 curl http://localhost:5000/frotar/3
 ```
 
+
+## Persistencia con MongoDB
+
+A partir de esta versión, las frases auspiciosas se almacenan en MongoDB en lugar de en memoria o en fichero de texto.
+
+La aplicación utiliza el driver oficial `pymongo` para conectarse a la base de datos.
+
+---
+
+## Estructura de la base de datos
+
+- Base de datos: `bayeta`
+- Colección: `frases_auspiciosas`
+- Cada documento tiene el formato:
+
+```json
+{
+  "_id": ObjectId(...),
+  "frase": "Texto de la frase"
+}

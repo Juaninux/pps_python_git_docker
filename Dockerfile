@@ -18,3 +18,6 @@ COPY app.py bayeta.py frases.txt ./
 EXPOSE 5000
 
 CMD ["python", "app.py"]
+
+# Copiamos el prueba_mongo.py
+COPY app.py bayeta.py prueba_mongo.py ./
