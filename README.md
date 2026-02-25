@@ -11,3 +11,22 @@ Práctica ideada para practicar:
 Contributors: Juan Carrasco Milla y Víctor Manuel Andreu.
 
 v02
+
+## Requisitos
+- Python 3
+
+## Crear entorno virtual
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+## Instalar dependencias
+```bash
+pip install -r requirements.txt
+```
+
+## Ejecutar la aplicación
+
+```bash
+python app.py
+````
