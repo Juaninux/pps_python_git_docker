@@ -76,3 +76,22 @@ La aplicación utiliza el driver oficial `pymongo` para conectarse a la base de 
   "_id": ObjectId(...),
   "frase": "Texto de la frase"
 }
+
+
+## Despliegue con Docker Compose
+
+Levantar todos los servicios:
+
+```bash
+docker compose up --build
+```
+
+Detener servicios:
+
+```bash
+docker compose down
+```
+
+La aplicación quedará disponible en:
+
+[http://localhost:5000](http://localhost:5000)
