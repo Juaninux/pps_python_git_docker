@@ -35,3 +35,24 @@ python app.py
 
 * GET / -> devuelve "Hola, mundo"
 * GET /frotar/<n_frases> -> devuelve JSON con n_frases frases auspiciosas
+
+## Ejecutar con Docker
+
+### Build
+```bash
+docker build -t bayeta:docker .
+```
+
+### Run
+
+```bash
+docker run --rm -p 5000:5000 --name bayeta bayeta:docker
+```
+
+### Probar
+
+```bash
+curl http://localhost:5000/
+curl http://localhost:5000/frotar/3
+```
+
