@@ -25,8 +25,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Ejecutar la aplicación
-
+## Ejecutar la aplicación (Flask)
 ```bash
+source venv/bin/activate
 python app.py
-````
+```
+
+## Endpoints
+
+* GET / -> devuelve "Hola, mundo"
+* GET /frotar/<n_frases> -> devuelve JSON con n_frases frases auspiciosas
