@@ -10,7 +10,7 @@ Práctica ideada para practicar:
 
 Contributors: Juan Carrasco Milla y Víctor Manuel Andreu.
 
-# v02 - entorno aislado aislada
+# v02 - entorno aislado
 
 ## Requisitos
 - Python 3
