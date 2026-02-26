@@ -10,7 +10,7 @@ Práctica ideada para practicar:
 
 Contributors: Juan Carrasco Milla y Víctor Manuel Andreu.
 
-v02
+# v02 - entorno aislado aislada
 
 ## Requisitos
 - Python 3
@@ -25,18 +25,20 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Ejecutar la aplicación (Flask)
+## Ejecutar la aplicación
 ```bash
 source venv/bin/activate
 python app.py
 ```
+# v03 - Flask
+
 
 ## Endpoints
 
 * GET / -> devuelve "Hola, mundo"
 * GET /frotar/<n_frases> -> devuelve JSON con n_frases frases auspiciosas
 
-## Ejecutar con Docker
+# v04  Docker
 
 ### Build
 ```bash
@@ -57,7 +59,7 @@ curl http://localhost:5000/frotar/3
 ```
 
 
-## Persistencia con MongoDB
+# v05 Persistencia con MongoDB
 
 A partir de esta versión, las frases auspiciosas se almacenan en MongoDB en lugar de en memoria o en fichero de texto.
 
@@ -78,7 +80,7 @@ La aplicación utiliza el driver oficial `pymongo` para conectarse a la base de 
 }
 ```
 
-## Despliegue con Docker Compose
+# v06 Despliegue con Docker Compose
 
 Levantar todos los servicios:
 
@@ -95,3 +97,16 @@ docker compose down
 La aplicación quedará disponible en:
 
 [http://localhost:5000](http://localhost:5000)
+
+# v07 Añadido volúmen persistente
+
+# v08 Añadida función POST para introducir frases
+
+Uso:
+
+```bash
+curl -i -X POST http://localhost:5000/frotar/add \
+  -H "Content-Type: application/json" \
+  -d '{"frases":["Frase nueva 1","Frase nueva 2"]}'
+```
+
