@@ -4,6 +4,27 @@ import os
 DB_NAME = "bayeta"
 COL_NAME = "frases_auspiciosas"
 
+# ---------------------------
+# DATOS INICIALES (SEED)
+# ---------------------------
+
+DATOS = [
+    {"frase": "El éxito es como un fantasma, muchos hablan de él, pero pocos lo han visto de verdad"},
+    {"frase": "La aventura de hoy es la historia de terror del mañana"},
+    {"frase": "La felicidad es como un rayo de sol, disfrútala antes de que el cambio climático la arruine"},
+    {"frase": "Enfrenta tus miedos, o pídeles alquiler por vivir en tu cabeza"},
+    {"frase": "Recuerda, cada pequeño cambio cuenta. Especialmente los errores en tu declaración de la renta"},
+    {"frase": "Aprovecha las oportunidades, son como los autobuses, los que no llegan tarde simplemente no pasan"},
+    {"frase": "Ser agradecido está bien, pero no paga las facturas"},
+    {"frase": "La creatividad es como jugar a la ruleta rusa, nunca sabes cuándo te tocará una 'buena' idea"},
+    {"frase": "Ríe y el mundo reirá contigo. Llora, y te darán una cuenta de Twitter"},
+    {"frase": "Sigue tu corazón, pero recuerda llevar tu cerebro contigo"},
+]
+
+# ---------------------------
+# FUNCIONES
+# ---------------------------
+
 def instanciar():
     mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
     cliente = MongoClient(mongo_uri)
@@ -34,25 +55,34 @@ def consultar(n_frases: int):
         cliente.close()
 
 
-# -------- BLOQUE DE PRUEBA --------
+def add(frases: list):
+    """
+    Inserta nuevas frases en la colección.
+    Recibe una lista de strings.
+    Devuelve el número de documentos insertados.
+    """
+    if not frases:
+        return 0
+
+    docs = [{"frase": f.strip()} for f in frases if isinstance(f, str) and f.strip()]
+    if not docs:
+        return 0
+
+    cliente, frases_auspiciosas = instanciar()
+    try:
+        res = frases_auspiciosas.insert_many(docs)
+        return len(res.inserted_ids)
+    finally:
+        cliente.close()
+
+
+# ---------------------------
+# BLOQUE DE PRUEBA
+# ---------------------------
+
 if __name__ == "__main__":
-
-    datos = [
-        {"frase": "El éxito es como un fantasma, muchos hablan de él, pero pocos lo han visto de verdad"},
-        {"frase": "La aventura de hoy es la historia de terror del mañana"},
-        {"frase": "La felicidad es como un rayo de sol, disfrútala antes de que el cambio climático la arruine"},
-        {"frase": "Enfrenta tus miedos, o pídeles alquiler por vivir en tu cabeza"},
-        {"frase": "Recuerda, cada pequeño cambio cuenta. Especialmente los errores en tu declaración de la renta"},
-        {"frase": "Aprovecha las oportunidades, son como los autobuses, los que no llegan tarde simplemente no pasan"},
-        {"frase": "Ser agradecido está bien, pero no paga las facturas"},
-        {"frase": "La creatividad es como jugar a la ruleta rusa, nunca sabes cuándo te tocará una 'buena' idea"},
-        {"frase": "Ríe y el mundo reirá contigo. Llora, y te darán una cuenta de Twitter"},
-        {"frase": "Sigue tu corazón, pero recuerda llevar tu cerebro contigo"}
-    ]
-
-    inicializar(datos)
+    inicializar(DATOS)
 
     frases = consultar(3)
-
     for frase in frases:
         print(frase)
