@@ -6,6 +6,8 @@ services:
       - bayeta_net
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   bayeta:
     build: .
@@ -18,6 +20,9 @@ services:
       - "5000:5000"
     networks:
       - bayeta_net
+
+volumes:
+  mongo_data:
 
 networks:
   bayeta_net:
